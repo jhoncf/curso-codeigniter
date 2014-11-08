@@ -21,6 +21,7 @@
                     <td><?php echo $row->login ?></td>
                     <td><?php echo $row->senha ?></td>
                     <td><a href="<?php echo site_url("usuarios/edit/" . $row->id) ?>" class="btn btn-info btn-xs">Editar</a></td>
+                    <td><a href="<?php echo site_url("usuarios/delete/" . $row->id) ?>" class="btn btn-danger btn-xs">Excluir</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

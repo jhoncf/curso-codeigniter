@@ -8,26 +8,29 @@
  * @since 04/10/2014
  * @author Jhonatas C. Faria
  */
-class usuarios extends CI_Controller {
+class Usuarios extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->template->set_template("templates/template");
+        if ($this->session->userdata("logado") != TRUE) {
+            redirect("auth/login");
+        }
+        $this->template->set_template("templates/template_admin");
         $this->load->model("usuarios_model");
         $this->load->library("form_validation");
     }
 
     public function index() {
         $data['result'] = $this->usuarios_model->find()->result();
-        $this->template->load_view("usuarios/index-view", $data);
+        $this->template->load_view("admin/usuarios/index-view", $data);
     }
 
     public function create() {
-        $this->form_validation->set_rules("login", "Login", "required|max_length[255]");
+        $this->form_validation->set_rules("login", "Login", "required|max_length[255]|min_length[8]|is_unique[usuarios.login]");
         $this->form_validation->set_rules("senha", "Senha", "required|max_length[255]");
-
+        
         if ($this->form_validation->run() == FALSE) {
-            $this->template->load_view("usuarios/create-view");
+            $this->template->load_view("admin/usuarios/create-view");
         } else {
             $data_form = array(
                 "login" => $this->input->post("login"),
@@ -36,6 +39,8 @@ class usuarios extends CI_Controller {
 
             if ($this->usuarios_model->save($data_form) == TRUE) {
                 redirect("usuarios");
+            } else {
+                
             }
         }
     }
@@ -59,6 +64,24 @@ class usuarios extends CI_Controller {
                 redirect("usuarios");
             }
         }
+    }
+
+    public function delete() {
+        $id = $this->uri->segment(3) ? $this->uri->segment(3) : redirect("usuarios");
+        $this->usuarios_model->delete($id);
+        redirect("usuarios");
+    }
+    
+    public function crud(){
+        $this->load->library("grocery_crud");
+        
+        $crud = new Grocery_CRUD();
+        
+        $crud->set_table("usuarios");
+        
+        $data["output"] = $crud->render();
+        
+        $this->template->load_view("crud_view", $data);
     }
 
 }
