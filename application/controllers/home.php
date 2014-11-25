@@ -13,9 +13,11 @@ class Home extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->template->set_template("templates/template");
+        $this->load->model("portfolio_model");
     }
     
     public function index(){
-        $this->template->load_view("home/index_view");
+        $data['result_portfolio'] = $this->portfolio_model->find()->result();
+        $this->template->load_view("home/index_view", $data);
     }
 }

@@ -22,18 +22,23 @@
 
     <div class="portfolio-centered">
         <div class="recentitems portfolio">
-            <div class="portfolio-item graphic-design">
-                <div class="he-wrap tpl6">
-                    <img src="assets/img/portfolio/portfolio_09.jpg" alt="">
-                    <div class="he-view">
-                        <div class="bg a0" data-animate="fadeIn">
-                            <h3 class="a1" data-animate="fadeInDown">A Graphic Design Item</h3>
-                            <a data-rel="prettyPhoto" href="assets/img/portfolio/portfolio_09.jpg" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
-                            <a href="single-project.html" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
-                        </div><!-- he bg -->
-                    </div><!-- he view -->		
-                </div><!-- he wrap -->
-            </div><!-- end col-12 -->
+
+            <?php foreach ($result_portfolio as $item): ?>
+                <div class="portfolio-item graphic-design">
+                    <div class="he-wrap tpl6">
+                        <img src="assets/uploads/<?php echo $item->arquivo ?>" alt="<?php echo $item->titulo ?>">
+                        <div class="he-view">
+                            <div class="bg a0" data-animate="fadeIn">
+                                <h3 class="a1" data-animate="fadeInDown"><?php echo $item->titulo ?></h3>
+                                <a data-rel="prettyPhoto" href="assets/uploads/<?php echo $item->arquivo ?>" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-search"></i></a>
+                                <a href="single-project.html" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-link"></i></a>
+                            </div><!-- he bg -->
+                        </div><!-- he view -->		
+                    </div><!-- he wrap -->
+                </div><!-- end col-12 -->
+            <?php endforeach ?>
+
+
         </div><!-- portfolio -->
     </div><!-- portfolio container -->
 </div><!--/Portfoliowrap -->
@@ -45,13 +50,13 @@
 
 <div class="container mtb">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-1">
+        <div class="col-md-8 col-md-offset-1">
             <h4>Lorem Ipsum.</h4>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
             <p><br/><a href="about.html" class="btn btn-theme">Mais notícias</a></p>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-md-3">
             <h4>Últimas notícias</h4>
             <div class="hline"></div>
             <p><a href="single-post.html">Lorem Ipsum is simply dummy text.</a></p>

@@ -31,7 +31,7 @@ class Custom_library {
     public function send_mail($title, $message, $from_name, $from, $to, $attachment = '') {
         $this->ci = &get_instance();
         $config = Array(
-            'protocol' => 'mail', //Mude para SMTP se o servidor der suporte
+            'protocol' => 'smtp', //Mude para SMTP se o servidor der suporte
             'smtp_host' => "smtp.gmail.com",
             'smtp_port' => 587,
             'smtp_user' => "seu.email@gmail.com",

@@ -33,10 +33,12 @@ class Contato extends CI_Controller {
             $assunto = set_value("assunto");
             $mensagem = "Mensagem de: $nome <br><br> " . set_value("mensagem");
 
-            if ($this->custom_library->send_mail($assunto, $mensagem, $nome, $email, "jhonatas.cf@gmail.com") == TRUE) { // the information has therefore been successfully saved in the db
+            if ($this->custom_library->send_mail($assunto, $mensagem, $nome, $email, "jhonatas.cf@gmail.com") == TRUE) {
+                $this->session->set_flashdata("message", "Contato com enviado com sucesso!");
                 redirect('contato');   // or whatever logic needs to occur
             } else {
-                echo 'An error occurred saving your information. Please try again later';
+                $this->session->set_flashdata("message", "Erro ao enviar o email");
+                redirect("contato");
                 // Or whatever error handling is necessary
             }
         }

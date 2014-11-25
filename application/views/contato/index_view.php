@@ -10,15 +10,20 @@
         </div>
     <?php endif ?>
 
-    <div class="row">
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <strong>Informação</strong>
+    <!---Mensagem de Sucesso--->
+
+    <?php if ($this->session->flashdata("message")): ?>
+        <div class="row">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>Informação</strong>
+                <p><?php echo $this->session->flashdata("message")?></p>
+            </div>
         </div>
-    </div>
+    <?php endif ?>
 
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <h4>Contato</h4>
             <div class="hline"></div>
             <br>

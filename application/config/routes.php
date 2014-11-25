@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = "home";
+$route["portfolio/index"] = "admin/portfolio/index";
 $route['404_override'] = '';
 
 
